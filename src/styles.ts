@@ -34,6 +34,16 @@ const CSS = `
 /* PLACED (imprinted) reads amber, matching the placed reticle; ethereal/held stays cyan. */
 .cfgr-pill-placed { border-color:rgba(252,211,77,0.45); color:#fde68a; }
 .cfgr-sep { width:20px; height:1px; background:rgba(255,255,255,0.15); margin:2px 0; }
+/* Camera-mode bar (bottom of a 3D surface). pointer-events:all for the same faded-UI reason as .cfgr-btn. */
+.cfgr-switcher { display:inline-flex; align-items:stretch; overflow:hidden; border:1px solid rgba(255,255,255,0.25);
+  border-radius:6px; background:rgba(0,0,0,0.6); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+.cfgr-switch-btn { pointer-events:all; appearance:none; border:0; background:transparent; cursor:pointer;
+  color:rgba(255,255,255,0.72); font-size:12px; font-weight:500; line-height:1; padding:7px 10px; white-space:nowrap;
+  transition:background .12s, color .12s; }
+.cfgr-switch-btn + .cfgr-switch-btn { border-left:1px solid rgba(255,255,255,0.15); }
+.cfgr-switch-btn:hover { background:rgba(255,255,255,0.1); color:#fff; }
+.cfgr-switch-btn:focus-visible { outline:2px solid #7dd3fc; outline-offset:-2px; }
+.cfgr-switch-active { background:rgba(255,255,255,0.2); color:#fff; }
 `
 
 /** Inject the cfg-react stylesheet once. Safe to call on every mount + in non-DOM (SSR) contexts. */
