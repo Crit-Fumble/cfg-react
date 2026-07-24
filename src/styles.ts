@@ -8,7 +8,10 @@ const STYLE_ID = 'cfg-react-styles'
 
 const CSS = `
 .cfgr-rail { display:flex; flex-direction:column; align-items:center; gap:6px; }
-.cfgr-btn { position:relative; width:32px; height:32px; display:inline-flex; align-items:center; justify-content:center;
+/* pointer-events:all mirrors Foundry's own .ui-control buttons: when the rail is hosted inside
+   Foundry's scene-controls, the aside/menu/li are pointer-events:none (its "faded UI"), so a button
+   must opt back IN or it can never be clicked. Harmless on surfaces that don't do that (PlayTable). */
+.cfgr-btn { pointer-events:all; position:relative; width:32px; height:32px; display:inline-flex; align-items:center; justify-content:center;
   border:1px solid rgba(255,255,255,0.18); border-radius:6px; background:rgba(0,0,0,0.55); color:rgba(255,255,255,0.82);
   cursor:pointer; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); padding:0;
   transition:border-color .12s, background .12s, color .12s, box-shadow .12s; }
@@ -24,10 +27,12 @@ const CSS = `
 .cfgr-label-left { right:100%; margin-right:8px; }
 .cfgr-label-right { left:100%; margin-left:8px; }
 .cfgr-btn:hover .cfgr-label, .cfgr-btn:focus-visible .cfgr-label { opacity:1; }
-.cfgr-pill { pointer-events:none; display:inline-flex; align-items:center; gap:4px; white-space:nowrap; margin-top:2px;
-  background:rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.85);
+.cfgr-pill { pointer-events:none; display:inline-flex; align-items:center; gap:4px; white-space:nowrap;
+  background:rgba(0,0,0,0.6); border:1px solid rgba(125,211,252,0.4); color:#e0f2fe;
   font-size:12px; font-weight:500; line-height:1; padding:4px 10px; border-radius:999px;
   -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+/* PLACED (imprinted) reads amber, matching the placed reticle; ethereal/held stays cyan. */
+.cfgr-pill-placed { border-color:rgba(252,211,77,0.45); color:#fde68a; }
 .cfgr-sep { width:20px; height:1px; background:rgba(255,255,255,0.15); margin:2px 0; }
 `
 

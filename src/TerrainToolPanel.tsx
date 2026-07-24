@@ -24,11 +24,25 @@ export interface TerrainToolPanelProps {
   onToggleSnap: () => void
   snapHalf: boolean
   onToggleSnapHalf: () => void
-  /** Live brush/stamp elevation in game units (feet), or null/undefined to hide the readout. */
-  elevation?: number | null
-  unitLabel?: string
   /** Which screen edge the rail hugs (labels open inward). Default 'left' (left-edge rail). */
   labelSide?: 'left' | 'right'
+}
+
+/**
+ * TerrainElevationPill — the live target/brush elevation readout. Deliberately SEPARATE from the tool
+ * rail: on both surfaces it floats over the scene (PlayTable centres it at the top of the canvas; the
+ * plugin overlays it on the 3D view) because the rail — especially inside Foundry's narrow native
+ * tool column — is too narrow to hold a "+15 ft" label.
+ */
+export function TerrainElevationPill({ elevation, unitLabel = 'ft', placed }: { elevation: number | null | undefined; unitLabel?: string; placed?: boolean }) {
+  useEffect(ensureStyles, [])
+  if (elevation == null) return null
+  return (
+    <div className={placed ? 'cfgr-pill cfgr-pill-placed' : 'cfgr-pill'} data-testid="cfgr-terrain-elevation">
+      {elevation >= 0 ? '+' : ''}
+      {Math.round(elevation * 10) / 10} {unitLabel}
+    </div>
+  )
 }
 
 export function TerrainToolPanel({
@@ -42,8 +56,6 @@ export function TerrainToolPanel({
   onToggleSnap,
   snapHalf,
   onToggleSnapHalf,
-  elevation,
-  unitLabel = 'ft',
   labelSide = 'right',
 }: TerrainToolPanelProps) {
   useEffect(ensureStyles, [])
@@ -81,12 +93,6 @@ export function TerrainToolPanel({
       <RailButton icon={<GridIcon />} label="Grid-lock: snap to tiles + step whole grid-units" active={snap} pressed={snap} onClick={onToggleSnap} testId="cfgr-tool-snap" labelSide={labelSide} />
       {snap && (
         <RailButton icon={<HalfIcon />} label="Grid-lock step: HALF a grid-unit" active={snapHalf} pressed={snapHalf} onClick={onToggleSnapHalf} testId="cfgr-tool-snaphalf" labelSide={labelSide} />
-      )}
-      {elevation != null && (
-        <div className="cfgr-pill" data-testid="cfgr-terrain-elevation">
-          {elevation >= 0 ? '+' : ''}
-          {Math.round(elevation * 10) / 10} {unitLabel}
-        </div>
       )}
     </div>
   )
