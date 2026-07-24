@@ -1,0 +1,50 @@
+{
+  "name": "@crit-fumble/react",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Light, self-styled React components shared across PlayTable (Next.js) and JS-only surfaces (the FoundryVTT plugin). Pure UI — no three.js, no @crit-fumble/shared runtime dep; the host wires behaviour via props.",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crit-Fumble/cfg-react.git"
+  },
+  "homepage": "https://github.com/Crit-Fumble/cfg-react",
+  "bugs": "https://github.com/Crit-Fumble/cfg-react/issues",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "rimraf": "^6.1.2",
+    "typescript": "^5.9.3"
+  }
+}
