@@ -7,19 +7,21 @@
 const STYLE_ID = 'cfg-react-styles'
 
 const CSS = `
-.cfgr-rail { display:flex; flex-direction:column; align-items:center; gap:6px; }
+/* Geometry matches a Foundry scene-controls tool column (32px buttons, 8px gap, 4px radius) so the
+   rail reads as one continuous column when hosted there; the colour identity stays ours. */
+.cfgr-rail { display:flex; flex-direction:column; align-items:center; gap:8px; }
 /* pointer-events:all mirrors Foundry's own .ui-control buttons: when the rail is hosted inside
    Foundry's scene-controls, the aside/menu/li are pointer-events:none (its "faded UI"), so a button
    must opt back IN or it can never be clicked. Harmless on surfaces that don't do that (PlayTable). */
 .cfgr-btn { pointer-events:all; position:relative; width:32px; height:32px; display:inline-flex; align-items:center; justify-content:center;
-  border:1px solid rgba(255,255,255,0.18); border-radius:6px; background:rgba(0,0,0,0.55); color:rgba(255,255,255,0.82);
+  border:1px solid rgba(255,255,255,0.22); border-radius:4px; background:rgba(0,0,0,0.6); color:rgba(255,255,255,0.85);
   cursor:pointer; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); padding:0;
   transition:border-color .12s, background .12s, color .12s, box-shadow .12s; }
 .cfgr-btn:hover { border-color:rgba(255,255,255,0.55); color:#fff; background:rgba(0,0,0,0.7); }
 .cfgr-btn:focus-visible { outline:2px solid #7dd3fc; outline-offset:1px; }
 .cfgr-btn.cfgr-active { border-color:rgba(125,211,252,0.8); color:#e0f2fe; background:rgba(8,47,73,0.65);
   box-shadow:0 0 0 1px rgba(125,211,252,0.5), 0 0 10px rgba(56,189,248,0.35); }
-.cfgr-btn svg { width:18px; height:18px; display:block; }
+.cfgr-btn svg { width:19px; height:19px; display:block; }
 .cfgr-label { position:absolute; top:50%; transform:translateY(-50%); white-space:nowrap; z-index:30;
   background:rgba(0,0,0,0.85); color:#fff; font-size:12px; font-weight:500; line-height:1; padding:5px 8px; border-radius:4px;
   box-shadow:0 2px 8px rgba(0,0,0,0.45); opacity:0; pointer-events:none; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);

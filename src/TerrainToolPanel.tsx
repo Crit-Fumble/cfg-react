@@ -81,7 +81,6 @@ export function TerrainToolPanel({
       <RailButton icon={<LowerIcon />} label="Lower terrain" active={tool === 'lower'} onClick={() => onSelectTool('lower')} testId="cfgr-tool-lower" labelSide={labelSide} />
       <RailButton icon={<LevelIcon />} label="Level / flatten" active={tool === 'level'} onClick={() => onSelectTool('level')} testId="cfgr-tool-level" labelSide={labelSide} />
       <RailButton icon={<SmoothIcon />} label="Smooth" active={tool === 'smooth'} onClick={() => onSelectTool('smooth')} testId="cfgr-tool-smooth" labelSide={labelSide} />
-      <div className="cfgr-sep" />
       <RailButton
         icon={shape === 'square' ? <ShapeSquareIcon /> : <ShapeCircleIcon />}
         label={`Brush shape — ${shape} (click to toggle)`}
