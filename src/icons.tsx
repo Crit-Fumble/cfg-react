@@ -1,6 +1,6 @@
 /**
  * Inline SVG icons for the terrain tools — self-contained (no icon-library dependency) so the panel
- * renders identically on any surface. 24×24, stroke=currentColor (inherits the button's colour).
+ * renders identically on any surface. 24×24, stroke=currentColor (inherits the button's color).
  */
 import type { ReactNode } from 'react'
 

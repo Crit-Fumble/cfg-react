@@ -8,7 +8,7 @@ const STYLE_ID = 'cfg-react-styles'
 
 const CSS = `
 /* Geometry matches a Foundry scene-controls tool column (32px buttons, 8px gap, 4px radius) so the
-   rail reads as one continuous column when hosted there; the colour identity stays ours. */
+   rail reads as one continuous column when hosted there; the color identity stays ours. */
 .cfgr-rail { display:flex; flex-direction:column; align-items:center; gap:8px; }
 /* pointer-events:all mirrors Foundry's own .ui-control buttons: when the rail is hosted inside
    Foundry's scene-controls, the aside/menu/li are pointer-events:none (its "faded UI"), so a button
