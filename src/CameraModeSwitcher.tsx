@@ -20,13 +20,18 @@ export interface CameraModeSwitcherProps {
   /** The active mode key, or null when none is active. */
   active: string | null
   onSelect: (key: string) => void
+  /** data-testid prefix for the per-mode buttons (default 'cfgr-camera-'). Hosts with established
+   *  selectors (PlayTable's 'scene-camera-*' smoke recipes) keep them across the consolidation. */
+  testIdPrefix?: string
+  /** data-testid for the bar itself (default 'cfgr-camera-switcher'). */
+  switcherTestId?: string
 }
 
-export function CameraModeSwitcher({ modes, active, onSelect }: CameraModeSwitcherProps) {
+export function CameraModeSwitcher({ modes, active, onSelect, testIdPrefix = 'cfgr-camera-', switcherTestId = 'cfgr-camera-switcher' }: CameraModeSwitcherProps) {
   useEffect(ensureStyles, [])
   if (!modes.length) return null
   return (
-    <div className="cfgr-switcher" role="group" aria-label="Camera view" data-testid="cfgr-camera-switcher">
+    <div className="cfgr-switcher" role="group" aria-label="Camera view" data-testid={switcherTestId}>
       {modes.map((m) => (
         <button
           key={m.key}
@@ -35,7 +40,7 @@ export function CameraModeSwitcher({ modes, active, onSelect }: CameraModeSwitch
           onClick={() => onSelect(m.key)}
           aria-pressed={active === m.key}
           title={m.title || m.label}
-          data-testid={`cfgr-camera-${m.key}`}
+          data-testid={`${testIdPrefix}${m.key}`}
         >
           {m.label}
         </button>
