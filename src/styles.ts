@@ -46,6 +46,11 @@ const CSS = `
 .cfgr-switch-btn:hover { background:rgba(255,255,255,0.1); color:#fff; }
 .cfgr-switch-btn:focus-visible { outline:2px solid #7dd3fc; outline-offset:-2px; }
 .cfgr-switch-active { background:rgba(255,255,255,0.2); color:#fff; }
+/* SEAT slider — the pill above the camera bar: your position around the 3D table. */
+.cfgr-seat { pointer-events:all; display:inline-flex; align-items:center; gap:8px; padding:6px 12px;
+  border-radius:999px; background:rgba(0,0,0,0.55); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+.cfgr-seat-label { font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.5); }
+.cfgr-seat input[type="range"] { width:192px; height:4px; cursor:pointer; accent-color:#67e8f9; }
 `
 
 /** Inject the cfg-react stylesheet once. Safe to call on every mount + in non-DOM (SSR) contexts. */
