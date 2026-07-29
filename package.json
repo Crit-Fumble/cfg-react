@@ -1,6 +1,6 @@
 {
   "name": "@crit-fumble/react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Light, self-styled React components shared across PlayTable (Next.js) and JS-only surfaces (the FoundryVTT plugin). Pure UI — no three.js, no @crit-fumble/shared runtime dep; the host wires behaviour via props.",
   "license": "AGPL-3.0-only",
