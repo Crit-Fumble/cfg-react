@@ -1,0 +1,44 @@
+name: ci
+
+# Push/PR gate for @crit-fumble/react.
+#
+# This repo previously had NO push or PR workflow at all — `release.yml` was the only automation, it
+# ran on tag push only, and it gated on a typecheck alone. There was no `test` script to run.
+#
+# The sibling `cfg-threejs` learned this the expensive way: its `test.yml` header records two camera
+# regressions that reached a published package before a push/PR gate existed. This package is
+# consumed the same way — published to GitHub Packages, pulled by PlayTable and the FoundryVTT
+# plugin — so a break here is only discovered downstream, after a publish.
+#
+# So: everything a release gates on runs here first, on every push and PR.
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # `build` is a distinct signal from `typecheck`: it is what `prepublishOnly` runs, so it
+      # catches emit-only failures (declaration emit, rootDir escapes) that `--noEmit` never sees.
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
