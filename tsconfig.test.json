@@ -1,0 +1,14 @@
+// tests/ sits outside the emit tsconfig's `include` (rootDir is src, so nothing
+// leaks into dist) — which also meant it was never typechecked. This project is
+// what keeps it checked; `npm run typecheck` runs both.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    // tests/ sits outside the emit rootDir; nothing is emitted here, so widen it
+    "rootDir": ".",
+    "types": ["jest", "node", "@testing-library/jest-dom"]
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["tests/**/*.ts", "tests/**/*.tsx", "src/**/__tests__/**/*.ts*", "src/**/*.test.ts*"]
+}
